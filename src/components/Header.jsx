@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getProfilePictureBlob } from '../utils/storage';
 
 export default function Header({ onOpenContact }) {
   const location = useLocation();
@@ -14,13 +15,46 @@ export default function Header({ onOpenContact }) {
   const isAccount = location.pathname === '/my-account';
   const showProfile = isDashboard || isAccount;
 
-  // Check for uploaded avatar
+  // Load profile picture from IndexedDB and listen for updates
   useEffect(() => {
-    const saved = localStorage.getItem('marena_custom_avatar');
-    if (saved) {
-      setCustomAvatar(saved);
+    let currentObjectUrl = null;
+
+    async function loadAvatar() {
+      try {
+        const photoRecord = await getProfilePictureBlob();
+        if (photoRecord && photoRecord.blob) {
+          if (currentObjectUrl) {
+            URL.revokeObjectURL(currentObjectUrl);
+          }
+          currentObjectUrl = URL.createObjectURL(photoRecord.blob);
+          setCustomAvatar(currentObjectUrl);
+        } else {
+          if (currentObjectUrl) {
+            URL.revokeObjectURL(currentObjectUrl);
+            currentObjectUrl = null;
+          }
+          setCustomAvatar(null);
+        }
+      } catch (err) {
+        console.warn('Header: unable to load avatar from IndexedDB', err);
+      }
     }
-  }, [location.pathname]);
+
+    loadAvatar();
+
+    const handleAvatarUpdate = () => {
+      loadAvatar();
+    };
+
+    window.addEventListener('marena_avatar_updated', handleAvatarUpdate);
+
+    return () => {
+      window.removeEventListener('marena_avatar_updated', handleAvatarUpdate);
+      if (currentObjectUrl) {
+        URL.revokeObjectURL(currentObjectUrl);
+      }
+    };
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {

@@ -32,7 +32,7 @@
 - **Tab 1 — ACCOUNT DETAILS**:
   - **Left Card (`Your Details`)**:
     - Textured card background (`my_detail_background.png`) with `#FFE1C3` border.
-    - Fields accurately mapped with dummy profile data:
+    - Fields accurately mapped with inline editing and persistent storage:
       - Employee Code: `235809142`
       - Name: `KARTHIK REDDY M`
       - Email: `karthik.reddy.hyd26@gmail.com`
@@ -41,26 +41,34 @@
       - Date Of Birth: `12-05-2005`
       - Address: `Plot No. 42, Sri Sai Nagar Colony, Near Uppal Metro Station, Uppal, Hyderabad, Telangana, India, 500039`
       - Institution Name: `Manipal Institute of Technology, Bengaluru MAHE Bengaluru Campus, Karnataka,India`
+    - **Inline Field Editing**:
+      - Each field features its own edit trigger button, inline input/select/textarea, and dedicated Save / Cancel controls.
+      - Real-time client-side validation for email format, phone digits (7-15 digits), and date format (DD-MM-YYYY).
+      - Persistent `localStorage` storage under key `marena_user_profile_data`.
+      - "Reset to Defaults" option restores original anonymous Uppal Hyderabad default values.
   - **Right Card (`Profile Picture`)**:
     - Authentic student ID photo frame (`169px x 169px`).
-    - **Photo Upload Feature**:
-      - `Upload New Photo` button allowing the user to select and preview a custom image.
-      - Persists to `localStorage` and updates header profile badge.
-      - `Reset to Default Photo` restores the authentic university photo.
+    - **Photo Upload & IndexedDB Persistence**:
+      - `Upload New Photo` button allowing the user to select JPEG, PNG, or WebP images (max 5MB).
+      - Immediate preview before saving with dedicated `Save Photo` and `Cancel` controls.
+      - Persisted as binary `Blob` in `IndexedDB` (`MarenaPortalDB`, store `binary_assets`) to prevent localStorage quota exhaustion.
+      - Restores automatically on page reload and synchronizes with the header profile badge across navigation.
+      - `Reset to Default Photo` removes the custom image from IndexedDB and restores the fallback student ID photo.
 - **Tab 2 — MARENA**:
   - **Notice Banner**:
-    - `PLEASE UPDATE THE BIOMETRIC DATA AFTER SUCCESSFUL PAYMENT WITH RECEIPT AT MARENA RECEPTION COUNTER.`
+    - `PLEASE UPDATE THE BIOMETRIC DATA AFTER SUCCESSFUL PAYMENT WITH RECEIPT AT MARENA RECEIGN COUNTER.`
   - **Transactions Table**:
     - Formatted with table classes matching the production portal and horizontal scrollbar (`min-width: 1100px`).
     - Alternating row styling (`#ffffff` / `#f7f9fa`).
+    - Dynamically reflects the user's saved Name across all table rows.
     - **Row 1 (New)**: `order_T5sN8RE1Pw9yZk` | `MARBLR6821` | `GYM` | `1 Month` | `10/10/2026` | `09/11/2026` | `₹2,000` | Download Receipt.
     - **Row 2**: `order_S3rK3QDOPvuBTc` | `MARBLR4764` | `GYM` | `1 Month` | `14/01/2026` | `13/02/2026` | `₹2,000` | Download Receipt.
     - **Row 3**: `order_R2alxDV0ju8zw` | `MARBLR1508` | `GYM` | `1 Month` | `07/08/2025` | `06/09/2025` | `₹2,000` | Download Receipt.
-  - **Custom Receipt File Attachment & Downloader**:
-    - Hidden / discreet upload controller at the bottom of the page allows uploading any receipt file (PDF, PNG, JPG, doc, etc.).
-    - When a file is uploaded, clicking the orange **Download** button on any table row downloads that exact attached file onto the user's computer.
-    - Persisted in browser `localStorage` with active badge indicators and a "Remove" option.
-    - Automatic fallback: If no custom file is attached, an authentic MARENA receipt document is generated and downloaded dynamically.
+  - **Custom Receipt File Attachment & IndexedDB Persistence**:
+    - Upload controller at the bottom allows uploading any custom receipt file (PDF, PNG, JPG, up to 10MB).
+    - Persisted as binary `Blob` with metadata in `IndexedDB` (`MarenaPortalDB`).
+    - Clicking the orange **Download** button on any table row downloads that exact attached file.
+    - Automatic fallback: If no custom file is attached, an official formatted MARENA payment receipt text document is generated using the user's saved personal details.
 
 ---
 

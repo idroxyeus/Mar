@@ -3,182 +3,294 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactModal from '../components/ContactModal';
+import {
+  getUserDetails,
+  saveUserField,
+  resetUserDetails,
+  validateField,
+  USER_FIELD_CONFIG,
+  DEFAULT_USER_DETAILS,
+  saveProfilePictureBlob,
+  getProfilePictureBlob,
+  deleteProfilePictureBlob,
+  saveReceiptAttachmentBlob,
+  getReceiptAttachmentBlob,
+  deleteReceiptAttachmentBlob,
+} from '../utils/storage';
 
 export default function MyAccountPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const urlTab = searchParams.get('tab');
-  // Default to 'marena' if query param says marena, else 'marena' or 'account' (let's keep 'marena' accessible or default)
-  const [activeTab, setActiveTabState] = useState(urlTab || 'marena');
+  const [activeTab, setActiveTabState] = useState(urlTab || 'account');
 
   const setActiveTab = (tab) => {
     setActiveTabState(tab);
     setSearchParams({ tab });
   };
+
   const [showContactModal, setShowContactModal] = useState(false);
   const [receiptToast, setReceiptToast] = useState(null);
+
+  // Editable personal details state (persisted in localStorage)
+  const [userDetails, setUserDetails] = useState(getUserDetails);
+  const [editingField, setEditingField] = useState(null);
+  const [editDraftValue, setEditDraftValue] = useState('');
+  const [fieldError, setFieldError] = useState(null);
+
+  // Profile photo state (persisted as Blob in IndexedDB)
   const [profilePhoto, setProfilePhoto] = useState('/assets/images/student_profile.jpg');
   const [hasCustomPhoto, setHasCustomPhoto] = useState(false);
+  const [photoError, setPhotoError] = useState(null);
+  const [pendingPhotoFile, setPendingPhotoFile] = useState(null);
+  const [pendingPreviewUrl, setPendingPreviewUrl] = useState(null);
 
-  // Load custom photo from localStorage if present
+  // Custom receipt file state (persisted as Blob in IndexedDB)
+  const [customReceiptFile, setCustomReceiptFile] = useState(null);
+
+  // Restore saved profile picture and receipt from IndexedDB on component mount
   useEffect(() => {
-    const custom = localStorage.getItem('marena_custom_avatar');
-    if (custom) {
-      setProfilePhoto(custom);
-      setHasCustomPhoto(true);
+    // 1. Sync personal details from localStorage
+    setUserDetails(getUserDetails());
+
+    // 2. Restore profile photo from IndexedDB
+    let activePhotoUrl = null;
+    async function loadSavedPhoto() {
+      try {
+        const photoRecord = await getProfilePictureBlob();
+        if (photoRecord && photoRecord.blob) {
+          activePhotoUrl = URL.createObjectURL(photoRecord.blob);
+          setProfilePhoto(activePhotoUrl);
+          setHasCustomPhoto(true);
+        } else {
+          setProfilePhoto('/assets/images/student_profile.jpg');
+          setHasCustomPhoto(false);
+        }
+      } catch (err) {
+        console.warn('Could not restore profile photo from IndexedDB:', err);
+      }
     }
+    loadSavedPhoto();
+
+    // 3. Restore receipt attachment from IndexedDB
+    async function loadSavedReceipt() {
+      try {
+        const receiptRecord = await getReceiptAttachmentBlob();
+        if (receiptRecord && receiptRecord.blob) {
+          setCustomReceiptFile({
+            blob: receiptRecord.blob,
+            name: receiptRecord.filename,
+            type: receiptRecord.mimeType,
+            size: (receiptRecord.size / 1024).toFixed(1) + ' KB',
+          });
+        }
+      } catch (err) {
+        console.warn('Could not restore receipt attachment from IndexedDB:', err);
+      }
+    }
+    loadSavedReceipt();
+
+    // Clean up created object URLs on unmount
+    return () => {
+      if (activePhotoUrl) {
+        URL.revokeObjectURL(activePhotoUrl);
+      }
+    };
   }, []);
 
-  // Handle local photo upload
+  // Listen for storage updates across tabs/windows
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'marena_user_profile_data' || e.type === 'marena_user_details_updated') {
+        setUserDetails(getUserDetails());
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('marena_user_details_updated', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('marena_user_details_updated', handleStorageChange);
+    };
+  }, []);
+
+  // ========================================================
+  // INLINE FIELD EDITING HANDLERS
+  // ========================================================
+
+  const startEditing = (fieldKey) => {
+    setEditingField(fieldKey);
+    setEditDraftValue(userDetails[fieldKey] || '');
+    setFieldError(null);
+  };
+
+  const cancelEditing = () => {
+    setEditingField(null);
+    setEditDraftValue('');
+    setFieldError(null);
+  };
+
+  const handleSaveField = (fieldKey) => {
+    const err = validateField(fieldKey, editDraftValue);
+    if (err) {
+      setFieldError(err);
+      return;
+    }
+
+    const result = saveUserField(fieldKey, editDraftValue);
+    if (result.success) {
+      setUserDetails(result.data);
+      setEditingField(null);
+      setEditDraftValue('');
+      setFieldError(null);
+
+      const fieldConfig = USER_FIELD_CONFIG.find((f) => f.key === fieldKey);
+      const label = fieldConfig ? fieldConfig.label : fieldKey;
+      setReceiptToast(`Saved ${label} successfully in browser storage!`);
+      setTimeout(() => setReceiptToast(null), 3000);
+    } else {
+      setFieldError(result.error || 'Failed to save value.');
+    }
+  };
+
+  const handleResetAllDetails = () => {
+    if (window.confirm('Reset all personal details to default values?')) {
+      const res = resetUserDetails();
+      if (res.success) {
+        setUserDetails(res.data);
+        setEditingField(null);
+        setReceiptToast('Personal details restored to defaults.');
+        setTimeout(() => setReceiptToast(null), 3000);
+      }
+    }
+  };
+
+  // ========================================================
+  // PROFILE PICTURE HANDLERS (IndexedDB)
+  // ========================================================
+
   const handlePhotoUpload = (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      setReceiptToast('Image size exceeds 2MB limit. Please choose a smaller file.');
-      setTimeout(() => setReceiptToast(null), 3000);
+    // Validate mime type
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      setPhotoError('Invalid format. Please select a JPEG, PNG, or WebP image.');
+      setReceiptToast('Invalid format. Please select JPEG, PNG, or WebP.');
+      setTimeout(() => setReceiptToast(null), 3500);
+      e.target.value = '';
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target.result;
-      setProfilePhoto(result);
-      setHasCustomPhoto(true);
-      localStorage.setItem('marena_custom_avatar', result);
-      setReceiptToast('Profile photo updated successfully!');
-      setTimeout(() => setReceiptToast(null), 3000);
-    };
-    reader.readAsDataURL(file);
+    // Validate size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setPhotoError('Image size exceeds 5MB limit. Please choose a smaller file.');
+      setReceiptToast('Image exceeds 5MB limit.');
+      setTimeout(() => setReceiptToast(null), 3500);
+      e.target.value = '';
+      return;
+    }
+
+    setPhotoError(null);
+    if (pendingPreviewUrl) {
+      URL.revokeObjectURL(pendingPreviewUrl);
+    }
+    const previewUrl = URL.createObjectURL(file);
+    setPendingPhotoFile(file);
+    setPendingPreviewUrl(previewUrl);
+    e.target.value = '';
   };
 
-  const handleResetPhoto = () => {
-    localStorage.removeItem('marena_custom_avatar');
+  const handleSavePendingPhoto = async () => {
+    if (!pendingPhotoFile) return;
+
+    const saveRes = await saveProfilePictureBlob(pendingPhotoFile, pendingPhotoFile.name);
+    if (saveRes.success) {
+      setProfilePhoto(pendingPreviewUrl);
+      setHasCustomPhoto(true);
+      setPendingPhotoFile(null);
+      setPendingPreviewUrl(null);
+      setPhotoError(null);
+      setReceiptToast('Profile picture saved in browser storage (IndexedDB)!');
+      setTimeout(() => setReceiptToast(null), 3500);
+    } else {
+      setPhotoError('Could not save photo to browser database.');
+      setReceiptToast('Error saving photo: ' + saveRes.error);
+      setTimeout(() => setReceiptToast(null), 3500);
+    }
+  };
+
+  const handleCancelPendingPhoto = () => {
+    if (pendingPreviewUrl) {
+      URL.revokeObjectURL(pendingPreviewUrl);
+    }
+    setPendingPhotoFile(null);
+    setPendingPreviewUrl(null);
+    setPhotoError(null);
+  };
+
+  const handleResetPhoto = async () => {
+    if (pendingPreviewUrl) {
+      URL.revokeObjectURL(pendingPreviewUrl);
+      setPendingPreviewUrl(null);
+      setPendingPhotoFile(null);
+    }
+    await deleteProfilePictureBlob();
     setProfilePhoto('/assets/images/student_profile.jpg');
     setHasCustomPhoto(false);
+    setPhotoError(null);
     setReceiptToast('Profile photo restored to default.');
     setTimeout(() => setReceiptToast(null), 3000);
   };
 
-  // State for user custom receipt file (uploaded via hidden button at bottom)
-  const [customReceiptFile, setCustomReceiptFile] = useState(null);
+  // ========================================================
+  // RECEIPT ATTACHMENT HANDLERS (IndexedDB)
+  // ========================================================
 
-  // Load custom receipt file from localStorage on mount
-  useEffect(() => {
-    const savedReceipt = localStorage.getItem('marena_custom_receipt_data');
-    const savedName = localStorage.getItem('marena_custom_receipt_name');
-    const savedType = localStorage.getItem('marena_custom_receipt_type');
-    if (savedReceipt && savedName) {
-      setCustomReceiptFile({
-        url: savedReceipt,
-        name: savedName,
-        type: savedType || 'application/pdf',
-      });
-    }
-  }, []);
-
-  // Handle custom receipt upload via bottom hidden upload button
-  const handleReceiptFileUpload = (e) => {
+  const handleReceiptFileUpload = async (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const dataUrl = event.target.result;
-      const receiptObj = {
-        url: dataUrl,
+    // Validate size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setReceiptToast('File exceeds 10MB limit.');
+      setTimeout(() => setReceiptToast(null), 3500);
+      return;
+    }
+
+    const saveRes = await saveReceiptAttachmentBlob(file);
+    if (saveRes.success) {
+      setCustomReceiptFile({
+        blob: file,
         name: file.name,
-        type: file.type || 'application/octet-stream',
+        type: file.type,
         size: (file.size / 1024).toFixed(1) + ' KB',
-      };
-      setCustomReceiptFile(receiptObj);
-      try {
-        localStorage.setItem('marena_custom_receipt_data', dataUrl);
-        localStorage.setItem('marena_custom_receipt_name', file.name);
-        localStorage.setItem('marena_custom_receipt_type', file.type || 'application/octet-stream');
-      } catch (err) {
-        console.warn('Storage limit reached, holding file in state only', err);
-      }
-      setReceiptToast(`File "${file.name}" attached! Clicking "Download" in the table will download this file.`);
+      });
+      setReceiptToast(`Attached "${file.name}". Saved in browser storage.`);
       setTimeout(() => setReceiptToast(null), 4000);
-    };
-    reader.readAsDataURL(file);
+    } else {
+      setReceiptToast('Failed to save receipt attachment in browser storage.');
+      setTimeout(() => setReceiptToast(null), 3500);
+    }
   };
 
-  // Reset custom receipt file
-  const handleResetReceiptFile = () => {
+  const handleResetReceiptFile = async () => {
+    await deleteReceiptAttachmentBlob();
     setCustomReceiptFile(null);
-    localStorage.removeItem('marena_custom_receipt_data');
-    localStorage.removeItem('marena_custom_receipt_name');
-    localStorage.removeItem('marena_custom_receipt_type');
-    setReceiptToast('Custom receipt file removed.');
+    setReceiptToast('Custom receipt attachment removed.');
     setTimeout(() => setReceiptToast(null), 2500);
   };
 
-  // User details with sanitized dummy data (Uppal, Hyderabad)
-  const userDetails = {
-    employeeCode: '235809142',
-    name: 'KARTHIK REDDY M',
-    email: 'karthik.reddy.hyd26@gmail.com',
-    mobileNumber: '9849123456',
-    gender: 'Male',
-    dob: '12-05-2005',
-    address: 'Plot No. 42, Sri Sai Nagar Colony, Near Uppal Metro Station, Uppal, Hyderabad, Telangana, India, 500039',
-    institutionName: 'Manipal Institute of Technology, Bengaluru MAHE Bengaluru Campus, Karnataka,India',
-  };
-
-  // Marena membership table records (sorted latest first)
-  const marenaRecords = [
-    {
-      srNo: 1,
-      orderId: 'order_T5sN8RE1Pw9yZk',
-      receiptNo: 'MARBLR6821',
-      name: 'KARTHIK REDDY M',
-      membershipType: 'Primary',
-      age: '-',
-      sportsCategory: 'GYM',
-      membershipPeriod: '1 Month',
-      fromDate: '10/10/2026',
-      toDate: '09/11/2026',
-      amtPaid: '₹2,000',
-    },
-    {
-      srNo: 2,
-      orderId: 'order_S3rK3QDOPvuBTc',
-      receiptNo: 'MARBLR4764',
-      name: 'KARTHIK REDDY M',
-      membershipType: 'Primary',
-      age: '-',
-      sportsCategory: 'GYM',
-      membershipPeriod: '1 Month',
-      fromDate: '14/01/2026',
-      toDate: '13/02/2026',
-      amtPaid: '₹2,000',
-    },
-    {
-      srNo: 3,
-      orderId: 'order_R2alxDV0ju8zw',
-      receiptNo: 'MARBLR1508',
-      name: 'KARTHIK REDDY M',
-      membershipType: 'Primary',
-      age: '-',
-      sportsCategory: 'GYM',
-      membershipPeriod: '1 Month',
-      fromDate: '07/08/2025',
-      toDate: '06/09/2025',
-      amtPaid: '₹2,000',
-    },
-  ];
-
-  // Handle download receipt - downloads user's attached file or generates official document
+  // Handle Download: downloads user's attached file from IndexedDB, or generates text receipt
   const handleDownloadReceipt = (record) => {
-    if (customReceiptFile && customReceiptFile.url) {
-      // Download the user's custom uploaded file
+    if (customReceiptFile && customReceiptFile.blob) {
+      const url = URL.createObjectURL(customReceiptFile.blob);
       const link = document.createElement('a');
-      link.href = customReceiptFile.url;
+      link.href = url;
       link.download = customReceiptFile.name;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
 
       setReceiptToast(`Downloading ${customReceiptFile.name}...`);
       setTimeout(() => setReceiptToast(null), 3000);
@@ -199,7 +311,7 @@ Payment Status    : SUCCESS / CONFIRMED
 ----------------------------------------------------------------------
 MEMBER DETAILS
 ----------------------------------------------------------------------
-Name              : ${record.name}
+Name              : ${userDetails.name}
 Employee / Roll No: ${userDetails.employeeCode}
 Email             : ${userDetails.email}
 Mobile Number     : ${userDetails.mobileNumber}
@@ -241,6 +353,46 @@ to record your biometric entry data.
       setTimeout(() => setReceiptToast(null), 3500);
     }
   };
+
+  // Marena membership table records
+  const marenaRecords = [
+    {
+      srNo: 1,
+      orderId: 'order_T5sN8RE1Pw9yZk',
+      receiptNo: 'MARBLR6821',
+      membershipType: 'Primary',
+      age: '-',
+      sportsCategory: 'GYM',
+      membershipPeriod: '1 Month',
+      fromDate: '10/10/2026',
+      toDate: '09/11/2026',
+      amtPaid: '₹2,000',
+    },
+    {
+      srNo: 2,
+      orderId: 'order_S3rK3QDOPvuBTc',
+      receiptNo: 'MARBLR4764',
+      membershipType: 'Primary',
+      age: '-',
+      sportsCategory: 'GYM',
+      membershipPeriod: '1 Month',
+      fromDate: '14/01/2026',
+      toDate: '13/02/2026',
+      amtPaid: '₹2,000',
+    },
+    {
+      srNo: 3,
+      orderId: 'order_R2alxDV0ju8zw',
+      receiptNo: 'MARBLR1508',
+      membershipType: 'Primary',
+      age: '-',
+      sportsCategory: 'GYM',
+      membershipPeriod: '1 Month',
+      fromDate: '07/08/2025',
+      toDate: '06/09/2025',
+      amtPaid: '₹2,000',
+    },
+  ];
 
   return (
     <div className="flt" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -300,49 +452,101 @@ to record your biometric entry data.
                   {/* Left Column: Your Details */}
                   <div className="col-sm-6">
                     <div className="add_beneficiary flt">
-                      <div className="benif_text flt">Your Details</div>
+                      <div className="benif_text flt" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span>Your Details</span>
+                        <button
+                          type="button"
+                          className="reset_details_btn"
+                          onClick={handleResetAllDetails}
+                          title="Restore default account details"
+                        >
+                          Reset to Defaults
+                        </button>
+                      </div>
+
                       <div className="benef_content flt">
                         <ul>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Employee Code</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.employeeCode}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Name</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.name}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Email</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.email}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Mobile Number</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.mobileNumber}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Gender</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.gender}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Date Of Birth</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.dob}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Address</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.address}</span>
-                          </li>
-                          <li className="flex flt ng-star-inserted">
-                            <span className="name">Institution Name</span>
-                            <span className="colon">:</span>
-                            <span className="values">{userDetails.institutionName}</span>
-                          </li>
+                          {USER_FIELD_CONFIG.map((field) => {
+                            const isEditing = editingField === field.key;
+                            const currentValue = userDetails[field.key] || '';
+
+                            return (
+                              <li key={field.key} className="flex flt ng-star-inserted">
+                                <span className="name">{field.label}</span>
+                                <span className="colon">:</span>
+                                <span className="values">
+                                  {isEditing ? (
+                                    <div className="field_input_wrapper">
+                                      {field.type === 'select' ? (
+                                        <select
+                                          className="field_inline_select"
+                                          value={editDraftValue}
+                                          onChange={(e) => setEditDraftValue(e.target.value)}
+                                          autoFocus
+                                        >
+                                          {field.options.map((opt) => (
+                                            <option key={opt} value={opt}>
+                                              {opt}
+                                            </option>
+                                          ))}
+                                        </select>
+                                      ) : field.type === 'textarea' ? (
+                                        <textarea
+                                          className="field_inline_textarea"
+                                          rows={2}
+                                          value={editDraftValue}
+                                          onChange={(e) => setEditDraftValue(e.target.value)}
+                                          placeholder={field.placeholder}
+                                          autoFocus
+                                        />
+                                      ) : (
+                                        <input
+                                          type={field.type}
+                                          className="field_inline_input"
+                                          value={editDraftValue}
+                                          onChange={(e) => setEditDraftValue(e.target.value)}
+                                          placeholder={field.placeholder}
+                                          autoFocus
+                                        />
+                                      )}
+
+                                      {fieldError && <div className="field_inline_error">{fieldError}</div>}
+
+                                      <div className="field_edit_actions">
+                                        <button
+                                          type="button"
+                                          className="field_btn_save"
+                                          onClick={() => handleSaveField(field.key)}
+                                        >
+                                          <i className="fa-solid fa-check"></i> Save
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="field_btn_cancel"
+                                          onClick={cancelEditing}
+                                        >
+                                          <i className="fa-solid fa-xmark"></i> Cancel
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <span style={{ display: 'inline-flex', alignItems: 'center', width: '100%', justifyContent: 'space-between' }}>
+                                      <span style={{ wordBreak: 'break-word', flex: 1 }}>{currentValue}</span>
+                                      <button
+                                        type="button"
+                                        className="field_edit_trigger_btn"
+                                        onClick={() => startEditing(field.key)}
+                                        title={`Edit ${field.label}`}
+                                        aria-label={`Edit ${field.label}`}
+                                      >
+                                        <i className="fa-solid fa-pen-to-square"></i>
+                                      </button>
+                                    </span>
+                                  )}
+                                </span>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </div>
@@ -358,7 +562,7 @@ to record your biometric entry data.
                             <div className="alma_pic flt">
                               <img
                                 style={{ width: '169px', height: '169px', objectFit: 'cover' }}
-                                src={profilePhoto}
+                                src={pendingPreviewUrl || profilePhoto}
                                 alt="Profile"
                                 onError={(e) => {
                                   e.target.src = '/assets/images/student_profile.jpg';
@@ -367,7 +571,13 @@ to record your biometric entry data.
                             </div>
                           </div>
 
-                          {/* Custom User Photo Upload Option */}
+                          {photoError && (
+                            <div style={{ color: '#dc2626', fontSize: '13px', marginTop: '8px', fontWeight: 600 }}>
+                              {photoError}
+                            </div>
+                          )}
+
+                          {/* Profile Picture Upload Options */}
                           <div
                             className="photo_upload_option flt"
                             style={{
@@ -378,55 +588,86 @@ to record your biometric entry data.
                               flexWrap: 'wrap',
                             }}
                           >
-                            <input
-                              type="file"
-                              id="userPhotoUploadInput"
-                              accept="image/png, image/jpeg, image/jpg, image/webp"
-                              style={{ display: 'none' }}
-                              onChange={handlePhotoUpload}
-                            />
-                            <label
-                              htmlFor="userPhotoUploadInput"
-                              className="upload_label_btn"
-                              id="uploadPhotoBtn"
-                              style={{
-                                cursor: 'pointer',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                fontFamily: '"Titillium Web", sans-serif',
-                                fontSize: '13.5px',
-                                fontWeight: 600,
-                                color: '#ffffff',
-                                backgroundColor: '#00415a',
-                                padding: '7px 16px',
-                                borderRadius: '4px',
-                                border: 'none',
-                                transition: 'background-color 0.15s ease',
-                              }}
-                            >
-                              <i className="fa-solid fa-camera"></i> Upload New Photo
-                            </label>
+                            {pendingPhotoFile ? (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                                <button
+                                  type="button"
+                                  className="field_btn_save"
+                                  onClick={handleSavePendingPhoto}
+                                  id="savePhotoConfirmBtn"
+                                  style={{ padding: '7px 16px', fontSize: '13.5px' }}
+                                >
+                                  <i className="fa-solid fa-check"></i> Save Photo
+                                </button>
+                                <button
+                                  type="button"
+                                  className="field_btn_cancel"
+                                  onClick={handleCancelPendingPhoto}
+                                  id="cancelPhotoConfirmBtn"
+                                  style={{ padding: '7px 16px', fontSize: '13.5px' }}
+                                >
+                                  <i className="fa-solid fa-xmark"></i> Cancel
+                                </button>
+                                <span style={{ fontSize: '12.5px', color: '#0369a1', fontWeight: 600 }}>
+                                  (Previewing: {pendingPhotoFile.name})
+                                </span>
+                              </div>
+                            ) : (
+                              <>
+                                <input
+                                  type="file"
+                                  id="userPhotoUploadInput"
+                                  accept="image/png, image/jpeg, image/jpg, image/webp"
+                                  style={{ display: 'none' }}
+                                  onChange={handlePhotoUpload}
+                                />
+                                <label
+                                  htmlFor="userPhotoUploadInput"
+                                  className="upload_label_btn"
+                                  id="uploadPhotoBtn"
+                                  style={{
+                                    cursor: 'pointer',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '8px',
+                                    fontFamily: '"Titillium Web", sans-serif',
+                                    fontSize: '13.5px',
+                                    fontWeight: 600,
+                                    color: '#ffffff',
+                                    backgroundColor: '#00415a',
+                                    padding: '7px 16px',
+                                    borderRadius: '4px',
+                                    border: 'none',
+                                    transition: 'background-color 0.15s ease',
+                                  }}
+                                >
+                                  <i className="fa-solid fa-camera"></i> Upload New Photo
+                                </label>
 
-                            {hasCustomPhoto && (
-                              <button
-                                type="button"
-                                className="upload_reset_btn"
-                                onClick={handleResetPhoto}
-                                style={{
-                                  background: 'none',
-                                  border: 'none',
-                                  color: '#ff4155',
-                                  fontFamily: '"Titillium Web", sans-serif',
-                                  fontSize: '13px',
-                                  textDecoration: 'underline',
-                                  cursor: 'pointer',
-                                  padding: 0,
-                                }}
-                              >
-                                Reset to Default Photo
-                              </button>
+                                {hasCustomPhoto && (
+                                  <button
+                                    type="button"
+                                    className="upload_reset_btn"
+                                    onClick={handleResetPhoto}
+                                    style={{
+                                      background: 'none',
+                                      border: 'none',
+                                      color: '#ff4155',
+                                      fontFamily: '"Titillium Web", sans-serif',
+                                      fontSize: '13px',
+                                      textDecoration: 'underline',
+                                      cursor: 'pointer',
+                                      padding: 0,
+                                    }}
+                                  >
+                                    Reset to Default Photo
+                                  </button>
+                                )}
+                              </>
                             )}
+                          </div>
+                          <div style={{ fontSize: '12px', color: '#64748b', marginTop: '6px' }}>
+                            * Persisted privately in this browser's IndexedDB. Supports JPG, PNG, WebP (Max 5MB).
                           </div>
                         </div>
                       </div>
@@ -482,7 +723,7 @@ to record your biometric entry data.
                           <td>{item.srNo}</td>
                           <td>{item.orderId}</td>
                           <td>{item.receiptNo}</td>
-                          <td style={{ fontWeight: 600 }}>{item.name}</td>
+                          <td style={{ fontWeight: 600 }}>{userDetails.name}</td>
                           <td>{item.membershipType}</td>
                           <td>{item.age}</td>
                           <td>{item.sportsCategory}</td>
@@ -563,7 +804,7 @@ to record your biometric entry data.
                     <i className="fa-solid fa-file-pdf"></i>
                     {customReceiptFile.name} ({customReceiptFile.size})
                     <span style={{ color: '#0284c7', fontSize: '12px', fontWeight: 400 }}>
-                      [Active for "Download" button]
+                      [Stored in IndexedDB • Active for "Download" button]
                     </span>
                   </span>
                 ) : (
