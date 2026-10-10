@@ -1,0 +1,2203 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,300;1,400;1,500&family=Roboto:wght@100;300&family=Rochester&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Roboto:wght@100;300&family=Rochester&family=Titillium+Web:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Roboto:wght@100;300&family=Rochester&family=Teko:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Roboto:wght@100;300&family=Rochester&family=Teko:wght@300;400&family=Titillium+Web:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Roboto:wght@100;300&family=Rochester&family=Teko:wght@300;400;500&family=Titillium+Web:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Montserrat:wght@300&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&family=Roboto:wght@100;300&family=Rochester&family=Saira:wght@200;300;400&family=Teko:wght@300;400;500&family=Titillium+Web:wght@300;400&display=swap");
+
+.flex {
+  align-items: center;
+}
+
+.flt {
+  float: left;
+  width: 100%;
+}
+
+.login_text {
+  font-family: "Teko", sans-serif;
+  font-size: 27px;
+  font-weight: 500 !important;
+  color: rgba(0, 65, 90, 1);
+  text-align: left;
+  line-height: 30px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.login_main {
+  /* padding: 46px 0px 0px 0px; */
+}
+
+/* .select_type label {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 15px;
+    font-weight: 400 !important;
+    color: rgba(0, 0, 0, 1);
+} */
+.col-sm-6.sub_btn_padding {
+  padding-left: 0px;
+}
+
+.col-sm-6.sub_btn_padding2 {
+  padding-right: 0px;
+}
+
+.home_login {
+  padding: 8px 0px;
+}
+
+.back_btn button {
+  width: 100%;
+  border: 1px solid rgba(0, 65, 90, 1);
+  border-radius: 8px;
+  padding: 6px 120px;
+  font-family: "Teko", sans-serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* .submit_btn button{
+         width: 100%;
+    height: 55px;
+    border: 1px solid rgba(0, 155, 214, 1);
+    background-color: rgba(0, 155, 214, 1);
+    border-radius: 8px;
+    padding: 6px 120px;
+    font-family: 'Teko',sans-serif;
+    font-size: 26px;
+    font-weight: 400 !important;
+    float: right;
+    color: rgba(255, 255, 255, 1);
+    outline: none;
+} */
+.submit_btn button {
+  width: 100%;
+  text-transform: uppercase;
+  /* height: 55px; */
+  background-color: rgba(242, 127, 12, 1);
+  border-radius: 5px;
+  padding: 10px;
+  font-family: "Teko", sans-serif;
+  font-size: 26px;
+  font-weight: 400 !important;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  outline: none;
+  border: none;
+}
+
+.select_type label {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400 !important;
+  color: rgba(0, 83, 149, 1);
+}
+.role_number label {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400 !important;
+  color: rgba(0, 83, 149, 1);
+}
+
+/* .role_div {
+    background-color: rgba(221, 246, 255, 1);
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin: 17px 0px 10px 0px;
+} */
+
+.register_now {
+  /* margin-bottom: 40px; */
+}
+
+.row.register_now a {
+  /* color: #ff009bd6; */
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400 !important;
+  color: rgba(0, 155, 214, 1);
+}
+
+.mobile_span {
+  padding: 0px 21px;
+}
+
+.role_main {
+  /* padding: 0px 42px 0px 26px; */
+}
+
+.account {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+  margin-top: 10px;
+  /* float: right; */
+}
+
+.navigation .nav_bar ul li a {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 18px !important;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+}
+
+.nav_bar ul li a:hover {
+  color: rgba(242, 127, 12, 1);
+  text-decoration: none;
+}
+
+.navigation .nav_bar ul li {
+  display: inline-block;
+  padding: 0px 35px;
+}
+
+.nav_bar ul li a {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+}
+
+.nav_bar ul li {
+  display: inline-block;
+  padding: 0px 16px;
+}
+
+.login_sections button {
+  /* height: 51px; */
+  /* width: 199px; */
+  background-color: rgba(252, 239, 233, 1);
+  border: 1px solid rgba(242, 127, 12, 1);
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(242, 127, 12, 1);
+  outline: none;
+  margin-left: -14px;
+  width: 100%;
+}
+
+.login_section button {
+  height: 51px;
+  /* width: 199px; */
+  background-color: rgba(252, 239, 233, 1);
+  border: 1px solid rgba(242, 127, 12, 1);
+  border-radius: 8px;
+  padding: 6px 53px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(242, 127, 12, 1);
+  outline: none;
+}
+
+.login_sections img {
+  z-index: 9;
+}
+
+.nav_bar ul {
+  padding-left: 0px;
+  margin: 0px;
+  text-align: right;
+}
+
+.login_sections {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.login_sections button i {
+  padding-left: 10px;
+}
+
+.main_header {
+  padding: 20px 0px;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.main_header .row {
+  align-items: center;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 55px;
+  padding: 5px 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(102, 102, 102, 1);
+  background-clip: padding-box;
+  background-color: rgba(245, 245, 245, 1);
+  border: none;
+
+  border-radius: 7px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control::placeholder {
+  /* font-size: 10px; */
+  font-family: "Titillium Web", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+}
+
+span input {
+  margin-right: 5px;
+}
+
+span label {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+}
+
+.select_type select {
+  border-right: 15px solid rgba(245, 245, 245, 1) !important;
+  border: none;
+  width: 100%;
+  height: 55px;
+  padding: 5px 20px;
+  background-color: rgba(245, 245, 245, 1);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 155, 214, 1);
+  font-family: "Titillium Web";
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  border: none;
+  outline: none;
+}
+
+.role_number select {
+  display: block;
+  width: 100%;
+  height: 55px;
+  padding: 5px 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(102, 102, 102, 1);
+  background-clip: padding-box;
+  background-color: rgba(245, 245, 245, 1);
+  border-radius: 7px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: none;
+  border: none;
+}
+
+.back_btn {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(0, 155, 214, 1);
+  width: 100%;
+}
+
+.login_man img {
+  width: 100%;
+}
+
+.home_span a {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.login_span {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(242 127 12);
+  letter-spacing: 1px;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(242, 127, 12, 1);
+  border-radius: 100%;
+  background: #fff;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: rgba(242, 127, 12, 1);
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/* input[type='radio']:after {
+         width: 9px;
+    height: 9px;
+    border-radius: 15px;
+    top: -6px;
+    left: 2px;
+        position: relative;
+        background-color: rgb(255, 255, 255);
+
+        content: '';
+        display: inline-block;
+        visibility: visible;
+         border: 1px solid rgb(255, 255, 255); 
+
+    }
+
+    input[type='radio']:checked:after {
+     width: 9px;
+    height: 9px;
+    border-radius: 15px;
+    top: -6px;
+    left: 2px;
+        position: relative;
+       background-color: rgba(0, 155, 214, 1);
+        content: '';
+        display: inline-block;
+        visibility: visible;
+         border: 1px solid rgb(255, 255, 255); 
+
+    } */
+
+/* home  */
+/* .home_main img{
+    width:100%;
+} */
+.mit {
+  font-family: "Teko", sans-serif;
+  font-size: 186px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.swimming {
+  font-family: "Teko", sans-serif;
+  font-size: 87px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.campus {
+  font-family: "Teko", sans-serif;
+  font-size: 68px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.quote {
+  font-family: "Teko", sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+/* home  */
+/* .home_main img{
+    width:100%;
+} */
+.mit {
+  font-family: "Teko", sans-serif;
+  font-size: 186px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.swimming {
+  font-family: "Teko", sans-serif;
+  font-size: 87px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.campus {
+  font-family: "Teko", sans-serif;
+  font-size: 68px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.quote {
+  font-family: "Teko", sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.cousera_main img {
+  width: 100%;
+}
+
+.marena_man {
+  width: 50%;
+}
+
+.adhoc_text {
+  width: 50%;
+  /* text-align: center; */
+  /* padding: 0px 127px; */
+  padding-right: 10%;
+}
+
+.div_line {
+  height: 12px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 15px 0 rgba(18, 131, 214, 0.2);
+}
+
+.indoor_sport img {
+  border-right: 2px solid #000000;
+  padding-right: 15%;
+}
+
+.adhoc_man {
+  width: 50%;
+}
+
+.main_img img {
+  width: 100%;
+  padding: 10px;
+}
+
+.adhoc_main {
+  display: flex;
+}
+
+.sub_img {
+  display: flex;
+}
+
+.img1 img {
+  width: 100%;
+  padding: 10px;
+}
+
+.img2 img {
+  width: 100%;
+  padding: 10px;
+}
+
+.adhoc_main_text {
+  line-height: 1px;
+  font-family: "Teko", sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.ad_text {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.adhoc_text button {
+  background-color: rgba(0, 155, 214, 1);
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+
+/* .coursera_text img{
+    width: 100%;
+} */
+.coursera_text {
+  display: flex;
+}
+
+.home_main {
+  display: flex;
+}
+
+.coursera_text span {
+  font-family: "Teko", sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.outside_flex span {
+  font-family: "Teko", sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 6px;
+  line-height: 100px;
+}
+
+.discover {
+  font-family: "Teko", sans-serif !important;
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  color: rgba(0, 65, 90, 1) !important;
+  letter-spacing: 1px !important;
+  line-height: 32px !important;
+}
+
+.home_main button {
+  background-color: rgba(0, 155, 214, 1);
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+
+.outside_flex {
+  padding: 0px 86px;
+}
+
+.s_text {
+  width: 50%;
+  padding: 70px 90px;
+}
+
+.s_img {
+  width: 50%;
+}
+
+.flexes {
+  display: flex;
+}
+
+.s_img img {
+  width: 100%;
+}
+
+.s_text button {
+  background-color: rgba(0, 155, 214, 1);
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+
+.sport_home_text BUTTON {
+  background-color: rgba(0, 155, 214, 1);
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+
+.mit {
+  font-family: "Teko", sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+}
+
+.swimming_pool {
+  font-family: "Teko", sans-serif;
+  font-size: 65px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+  line-height: 0px;
+}
+
+.campus {
+  font-family: "Teko", sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.swimmingpool_main {
+  border-bottom: 5px solid rgba(1, 155, 214, 1);
+}
+
+.home_main {
+  border-top: 5px solid rgba(11, 186, 254, 1);
+}
+
+.healthy {
+  font-family: "Teko", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+  line-height: 1px;
+}
+
+.sports_home_main img {
+  width: 100%;
+}
+
+.sport_home_complex {
+  text-shadow: 0 6px 6px rgba(185, 190, 193, 1);
+  font-family: "Teko", sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+  line-height: 72px;
+}
+
+.welcome {
+  font-family: "Teko", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+}
+
+.mahe {
+  font-family: "Teko", sans-serif;
+  font-size: 65px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  letter-spacing: 1px;
+  line-height: 45px;
+}
+
+.marena {
+  font-family: "Teko", sans-serif;
+  font-size: 130px;
+  font-weight: 600;
+  color: rgba(0, 155, 214, 1);
+  letter-spacing: 1px;
+  line-height: 90px;
+}
+
+.space_around_span {
+  width: 60%;
+}
+
+.justify_content {
+  width: 40%;
+  transform: translate(0px, 83px);
+}
+
+.sports_home_main {
+  position: relative;
+}
+
+.sport_home_text {
+  position: absolute;
+}
+
+.manipal_indoor {
+  padding: 0px 16px;
+}
+
+.indoor_crickets {
+  width: 12%;
+}
+
+.indoor_sport {
+  width: 20%;
+}
+
+.indoor_football {
+  width: 10%;
+}
+
+.table_tennis {
+  width: 12%;
+}
+
+.squash_court {
+  width: 10%;
+}
+
+.gymnasium {
+  width: 12%;
+}
+
+.indoor_jogging_track {
+  width: 12%;
+}
+
+.indoor_basketball {
+  width: 12%;
+}
+
+.indoor_text {
+  font-family: "Teko", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  letter-spacing: 1px;
+  align-items: center;
+  position: relative;
+  border-radius: 5px;
+  margin-top: -59px;
+  background-color: white;
+  box-shadow: 0 0 46px 0 rgb(18 131 214 / 20%);
+}
+
+.indoor_sport img {
+  width: 100%;
+}
+
+.manipal_indoor div {
+  padding: 6px 0px;
+}
+
+/* login footer  */
+.login_footer {
+  background-color: rgba(0, 65, 90, 1);
+  box-shadow: 0 0 15px 0 rgba(18, 131, 214, 0.2);
+  padding: 8px 0px;
+  /* margin-top: 30px; */
+  border-top: 3px solid #2c9bd6;
+}
+
+.designed {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 1px;
+}
+
+.login_footer_main .flexes {
+  font-family: "Titillium Web";
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: 1px;
+}
+
+.social_media {
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  padding: 0px 7px;
+  text-align: right;
+}
+
+.social_media i {
+  padding: 0px 8px;
+}
+
+.rules {
+  width: 50%;
+  text-align: center;
+}
+
+.home {
+  width: 25%;
+  text-align: center;
+}
+
+/* .contact {
+    width: 25%;
+    text-align: center;
+} */
+
+.login_form.space_above.flt {
+  margin-top: 10px !important;
+}
+
+.backdrop {
+  position: fixed !important;
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100% !important;
+  left: 0px;
+  top: 0px;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+.alertify .ajs-modal {
+  position: fixed !important;
+  top: 50% !important;
+  right: auto !important;
+  left: 50% !important;
+  bottom: auto !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  z-index: 1981 !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100% !important;
+}
+
+.btnclear {
+  display: none !important;
+}
+
+my-date-picker {
+  display: flex !important;
+  align-items: center;
+}
+
+my-date-picker .mydp {
+  border: none !important;
+}
+
+.logoImg button {
+  outline: none;
+}
+
+.mydp .selection {
+  background-color: #f5f5f5 !important;
+  color: rgba(102, 102, 102, 1) !important;
+  font-size: 16px !important;
+}
+
+button.btnpicker.btnpickerenabled {
+  background-color: rgb(245 245 245) !important;
+}
+
+my-date-picker.is-invalid {
+  border: 1px solid #dc3545 !important;
+  padding: 5px 20px !important;
+}
+
+.is-invalid {
+  border: 1px solid #dc3545;
+}
+
+.mandatory {
+  color: rgb(255 65 85);
+}
+
+.main_reqq {
+  min-width: 187px;
+}
+
+.appr_req {
+  min-width: 200px;
+}
+
+/* new css */
+/* new css */
+
+.page_main_new {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 85px 0px;
+  min-height: calc(100vh - 137px);
+}
+
+.page_main {
+  background-color: rgba(255, 255, 255, 1);
+  padding: 30px 0px;
+  min-height: calc(100vh - 137px);
+}
+
+.selcard_left {
+  background-color: rgba(231, 231, 231, 1);
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px 0px rgb(0 0 0 / 25%);
+}
+
+.selcard_img img {
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.selcard_caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 25px;
+  min-height: 135px;
+}
+
+.selcard_txt {
+  font-size: 35px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+  font-family: "Teko", sans-serif;
+  text-transform: uppercase;
+}
+
+.selcard_btn button {
+  font-size: 25px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(242, 127, 12, 1);
+  font-family: "Teko", sans-serif;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  padding: 5px 30px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.selcard_btn button i {
+  font-size: 20px;
+  margin-left: 25px;
+}
+
+.selcard_right {
+  background-color: rgba(231, 231, 231, 1);
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px 0px rgb(0 0 0 / 25%);
+}
+
+.page_newhead {
+  font-size: 44px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+  font-family: "Teko", sans-serif;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.outer_cls {
+  margin-bottom: 25px;
+}
+
+.almashaine_name label {
+  font-size: 15px;
+  font-weight: 400 !important;
+  color: rgba(0, 83, 149, 1);
+  font-family: "Titillium Web", sans-serif;
+}
+
+.almashaine_name input {
+  display: block;
+  width: 100%;
+  height: 55px;
+  padding: 15px 25px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(102, 102, 102, 1);
+  background-clip: padding-box;
+  background-color: rgba(245, 245, 245, 1);
+  border: none;
+  border-radius: 5px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.almashaine_name input::placeholder {
+  font-size: 18px;
+}
+
+.almashaine_name .mandatory {
+  color: rgba(0, 83, 149, 1);
+}
+
+.select_type {
+  margin-bottom: 25px;
+}
+
+.select_type option[value=""][disabled] {
+  display: none !important;
+}
+
+.select_type select:focus {
+  border-right: 15px solid rgba(255, 255, 255, 1) !important;
+}
+
+.select_type .mandatory {
+  color: rgba(0, 83, 149, 1);
+}
+
+.payable_amt {
+  margin-bottom: 55px;
+}
+
+.payable_amt button {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(242, 127, 12, 1);
+  font-family: "Titillium Web", sans-serif;
+  background-color: rgba(252, 239, 233, 1);
+  border: 1px solid rgba(242, 127, 12, 1);
+  border-radius: 4px;
+  outline: none;
+  padding: 15px 55px;
+  width: 100%;
+}
+
+.upload_phtxt {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(0, 83, 149, 1);
+  font-family: "Titillium Web", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.upload_phtxt .mandatory {
+  color: rgba(0, 83, 149, 1);
+}
+
+.upload_notetxt {
+  color: rgba(242, 127, 12, 1);
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Titillium Web", sans-serif;
+  margin-bottom: 8px;
+}
+
+.upload_area {
+  background-color: rgba(245, 245, 245, 1);
+  border-radius: 10px;
+  padding: 70px 20px;
+}
+
+.file_upload_main {
+  text-align: center;
+  padding: 80px 15px 50px 15px;
+  border: 1px dashed rgba(0, 65, 90, 1);
+  border-radius: 10px;
+}
+
+.file_upload_image {
+  margin-bottom: 10px;
+}
+.selcard_sub {
+  margin-top: -30px;
+}
+
+.sel_left {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  position: relative;
+  padding-left: 15px;
+  margin-right: 8px;
+}
+
+.sel_left::before {
+  content: " ";
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  background-color: rgba(242, 127, 12, 1);
+  width: 10px;
+  height: 10px;
+}
+
+.sel_right {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: normal;
+  position: relative;
+  padding-left: 15px;
+}
+
+.sel_right::before {
+  content: " ";
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  background-color: rgba(242, 127, 12, 1);
+  width: 10px;
+  height: 10px;
+}
+
+.file_uptext {
+  font-size: 28px;
+  font-weight: 300;
+  color: rgba(36, 36, 36, 1);
+  font-family: "Teko", sans-serif;
+}
+
+.file_upbtn {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.file_upbtn label.custom_file_upload {
+  font-size: 22px;
+  font-weight: 300;
+  background-color: rgba(0, 65, 90, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: "Teko", sans-serif;
+  padding: 5px 80px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.file_upbtn label.custom_file_upload input[type="file"] {
+  display: none;
+}
+
+.upload_submit {
+  text-align: center;
+  margin-top: 45px;
+}
+
+.upload_submit button {
+  font-size: 30px;
+  font-weight: 400;
+  background-color: rgba(242, 127, 12, 1);
+  color: rgba(255, 255, 255, 1);
+  font-family: "Teko", sans-serif;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 5px 80px;
+}
+
+.page_nhead {
+  font-size: 44px;
+  font-weight: 400;
+  color: rgba(0, 65, 90, 1);
+  font-family: "Teko", sans-serif;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.alpayment_area {
+  background-color: rgba(245, 245, 245, 1);
+  border-radius: 8px;
+  text-align: center;
+  padding: 8%;
+  margin-bottom: 35px;
+}
+
+.payment_btn {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.payment_btn button {
+  font-size: 25px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(242, 127, 12, 1);
+  font-family: "Teko", sans-serif;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 80px;
+}
+
+.alconfirm_area {
+  text-align: center;
+  padding: 4%;
+  margin-bottom: 35px;
+}
+
+.alconfirm_img {
+  background-image: url(../images/thank-you.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.payment_successtxt {
+  font-size: 44px;
+  font-weight: 700;
+  color: rgba(0, 65, 90, 1);
+  font-family: "Titillium Web", sans-serif;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.thanku_txt {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(121, 121, 121, 1);
+  font-family: "Titillium Web", sans-serif;
+}
+
+.page_main_nw {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.coming_soon_main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 137px);
+}
+
+.coming_soon {
+  font-size: 50px;
+  font-weight: 600;
+  color: rgba(0, 65, 90, 1);
+  font-family: "Titillium Web", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+ul.footer_links1 {
+  list-style-type: none;
+  margin: 10px 0px 0px 0px;
+}
+
+ul.footer_links1 li {
+  display: inline-block;
+  margin-right: 35px;
+}
+
+ul.footer_links1 li a {
+  float: left;
+  width: 100%;
+  color: rgb(255, 255, 255) !important;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}
+.footer_links1 li:last-child {
+  float: right;
+}
+.conference_container {
+  min-height: calc(100vh - 135px);
+  padding: 32px 0px;
+}
+.conference_title {
+  color: rgb(0 65 90);
+  font-size: 30px;
+  font-family: "Teko", sans-serif;
+  font-weight: 400;
+  line-height: 38px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+.filler {
+  flex-grow: 1;
+}
+
+/* Vehicle Registration */
+
+.vehicle_registration {
+  padding: 20px 0px;
+}
+
+.heading_vehicle {
+  font-family: "Teko";
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 39.74px;
+  color: #00415a;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.vehicle_registration .profile_info {
+  box-shadow: 0px 0px 10px 0px #005eb633;
+  background-color: #00415a;
+  border-radius: 4px;
+  padding: 10px 15px;
+}
+
+.vehicle_registration .profile_txt {
+  font-family: "Teko";
+  font-size: 22px;
+  font-weight: 400;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.vehicle_registration .user_details {
+  background-color: #ffffff;
+  padding: 10px 15px;
+  box-shadow: 0px 0px 10px 0px #005eb633;
+}
+
+.vehicle_registration .user_details ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.vehicle_registration .user_details ul li {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.82px;
+
+  float: left;
+}
+
+.vehicle_registration .user_details ul li span {
+  float: right;
+}
+
+.vehicle_registration .user_details ul li:nth-child(even) {
+  text-align: end;
+  width: 60%;
+}
+
+.vehicle_registration .user_details ul li:nth-child(odd) {
+  width: 40%;
+}
+
+.vehicle_registration .vehicle_info {
+  padding: 16px;
+  box-shadow: 0px 0px 10px 0px #005eb633;
+  border-radius: 4px;
+}
+
+.vehicle_registration .rrrr {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.vehicle_registration .input_label {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.82px;
+  color: #053f5c;
+  margin-bottom: 4px;
+}
+
+.vehicle_registration .vehicle_input {
+  border: 1px solid #a5c7d8;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  background-color: #ffffff;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.vehicle_registration .upload_doc_main {
+  box-shadow: 0px 0px 10px 0px #005eb633;
+  border-radius: 5px;
+  margin: 15px 0px;
+  padding: 16px;
+}
+
+.vehicle_registration .user_details {
+  border-radius: 4px;
+  min-height: 178px;
+}
+
+.vehicle_registration .upload_doc_txt {
+  font-family: "Teko";
+  font-size: 22px;
+  font-weight: 400;
+  color: #00415a;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.vehicle_registration .upload_doc_txt span {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  text-transform: none;
+  color: #f27f0c;
+}
+
+.upload-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 20px;
+}
+
+/* Title styling */
+.upload-title {
+  font-size: 24px;
+  color: #053f5c;
+}
+
+.upload-subtitle {
+  font-size: 14px;
+  color: #f08329;
+}
+
+/* Upload card styling */
+.upload-card {
+  border: 2px solid #dbe8ff;
+  border-radius: 8px;
+  padding: 4px;
+  max-width: 300px;
+  background-color: #ebf0f4;
+}
+
+/* Label styling */
+.upload-label {
+  font-size: 18px;
+  color: #053f5c;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Upload box styling */
+.upload-box {
+  position: relative;
+  border: 1px solid #dbe8ff;
+  border-radius: 8px;
+  padding: 30px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.upload-box label {
+  margin-bottom: 0px;
+}
+
+.file-input {
+  display: none; /* Hide default file input */
+}
+
+.file-placeholder {
+  text-align: center;
+  color: #053f5c;
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.upload-icon {
+  margin-bottom: 10px;
+}
+
+/* Hover effect */
+.upload-box:hover {
+  background-color: #f7f7f7;
+}
+
+/* Button styling */
+.upload-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #053f5c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  outline: none !important;
+}
+
+.upload-button:hover {
+  background-color: #f27f0c;
+}
+
+.impt_ttxt {
+  font-family: "Titillium Web";
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.impt_ttxt img {
+  margin-right: 8px;
+}
+
+.enter_Email {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #a5c7d8;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.note_info {
+  border: 1px solid #c0d3ff;
+  border-radius: 4px;
+  background-color: #ebf0f4;
+  padding: 20px;
+}
+
+.backArrow {
+  cursor: pointer;
+}
+
+.note_info .plz_note {
+  font-family: "Titillium Web";
+  font-size: 17px;
+  font-weight: 600;
+  color: #f27f0c;
+}
+
+.note_info ol {
+  padding-left: 17px;
+  margin: 0px;
+}
+
+.note_info ol li {
+  font-family: "Titillium Web";
+  font-size: 15px;
+  font-weight: 400;
+  color: #000000;
+}
+@media (min-width: 320px) and (max-width: 479px) {
+  .payment_btn button {
+    font-size: 25px;
+    padding: 5px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .page_main .register_main .col-sm-8 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .page_main .register_main .col-sm-4 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .almashine_card .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .enter_Email {
+    width: 100% !important;
+  }
+
+  .input_mainDiv {
+    margin: 12px 0px 25px 0px !important;
+  }
+
+  .upload-card {
+    margin-bottom: 15px;
+  }
+
+  .vehicle_registration .user_details {
+    padding: 8px;
+  }
+  .vehicle_registration .user_details ul li {
+    font-size: 14px !important;
+    width: 50% !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    vertical-align: top !important;
+    word-break: break-all !important;
+  }
+
+  .custom-checkbox {
+    height: auto !important;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .designed {
+    text-align: left !important;
+    margin-top: 15px;
+  }
+
+  .flexes {
+    display: block;
+    text-align: -webkit-center;
+  }
+
+  .home {
+    width: 100%;
+    padding: 2px 0px;
+  }
+
+  .rules {
+    width: 100%;
+    padding: 2px 0px;
+  }
+
+  .contact {
+    width: 100%;
+  }
+
+  .social_media {
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .login_man.flt {
+    text-align: center;
+    margin-top: 38px;
+  }
+
+  .login_man img {
+    width: 80%;
+    margin: 0px auto;
+  }
+
+  /* .mobile_email.flt {
+        margin-top: 36px;
+    } */
+
+  .back_btn {
+    margin-bottom: 6px;
+  }
+
+  .account {
+    float: left;
+    width: 100%;
+    color: rgba(0, 65, 90, 1);
+  }
+
+  .submit_btn button {
+    padding: 0px;
+    margin-bottom: 10px;
+  }
+
+  .role_div {
+    padding: 0px;
+  }
+
+  .home_span a {
+    font-size: 12px;
+  }
+
+  .login_span {
+    font-size: 12px;
+  }
+
+  .col-sm-6.sub_btn_padding2 {
+    padding-left: 0px;
+  }
+
+  .col-sm-6.sub_btn_padding {
+    padding-right: 0px;
+  }
+
+  .login_section button {
+    padding: 6px 20px;
+  }
+
+  .pl-5,
+  .px-5 {
+    padding: 0px !important;
+  }
+
+  .back_btn button {
+    font-size: 20px;
+    padding: 0px;
+  }
+
+  .submit_btn button {
+    font-size: 20px;
+    padding: 0px;
+    /* height: 32px; */
+  }
+
+  .select_type select {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .login_section button {
+    height: 40px;
+  }
+
+  .role_number select {
+    height: 40px;
+  }
+
+  .navigation .nav_bar ul li a {
+  }
+
+  .navigation .nav_bar ul li {
+    padding: 0px 6px;
+  }
+
+  .navigation .nav_bar ul li a {
+    font-size: 8px !important;
+  }
+
+  .footer_links {
+    margin-bottom: 10px !important;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 320px) {
+  .hide_mobile {
+    display: none !important;
+  }
+
+  .buttons_main_container {
+    float: left;
+  }
+
+  .make_payment,
+  .reject_req,
+  .appr_req {
+    padding: 4px 10px !important;
+    font-size: 18px !important;
+  }
+
+  .main_reqq {
+    min-width: 0px !important;
+  }
+
+  .appr_req {
+    min-width: 0px !important;
+  }
+
+  .sticker_txt {
+    font-size: 13px !important;
+  }
+
+  .pay_txt,
+  .paid_txt {
+    font-size: 18px !important;
+  }
+
+  .vehicle_registration .profile_info {
+    margin-bottom: 10px !important;
+  }
+
+  .pay_bbox {
+    display: block !important;
+  }
+
+  .sticker_contaner {
+    display: block !important;
+    margin-bottom: 10px !important;
+  }
+
+  .sticker_txt {
+    margin-bottom: 10px !important;
+  }
+
+  .inline_button .col-sm-6 {
+    max-width: 50%;
+    flex: 0 0 50%;
+  }
+
+  /* new css */
+  .page_main_new {
+    padding: 45px 0px;
+  }
+
+  .selcard_left {
+    margin-bottom: 30px;
+  }
+
+  .selcard_caption {
+    padding: 20px 15px;
+    min-height: 77px;
+  }
+
+  .selcard_icon img {
+    width: 35px;
+  }
+
+  .selcard_txt {
+    font-size: 18px;
+    line-height: normal;
+  }
+
+  .selcard_sub {
+    margin-top: -15px;
+  }
+
+  .sel_left {
+    font-size: 10px;
+    padding-left: 10px;
+    margin-right: 8px;
+  }
+
+  .sel_left {
+    font-size: 10px;
+    padding-left: 10px;
+    margin-right: 8px;
+  }
+
+  .sel_left::before {
+    top: 5px;
+    width: 5px;
+    height: 5px;
+  }
+
+  .sel_right {
+    font-size: 10px;
+    padding-left: 10px;
+    margin-right: 8px;
+  }
+
+  .sel_right::before {
+    top: 5px;
+    width: 5px;
+    height: 5px;
+  }
+
+  .selcard_btn button {
+    font-size: 14px;
+    padding: 5px 15px;
+  }
+
+  .selcard_btn button i {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .page_newhead {
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+  .almashaine_name input {
+    height: 45px;
+  }
+
+  .payable_amt button {
+    font-size: 18px;
+    padding: 15px 35px;
+  }
+
+  .payable_amt {
+    margin-bottom: 25px;
+  }
+
+  .upload_area {
+    padding: 50px 20px;
+  }
+
+  .file_upbtn {
+    margin-top: 35px;
+  }
+
+  .file_uptext {
+    font-size: 25px;
+  }
+
+  .upload_submit button {
+    font-size: 25px;
+  }
+
+  .alpayment_area {
+    padding: 8% 2%;
+  }
+
+  .alpayment_img img {
+    width: 150px;
+  }
+
+  .page_nhead {
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+  .payment_btn button {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  .page_nhead {
+    font-size: 35px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+  .payment_successtxt {
+    font-size: 22px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+
+  .thanku_txt {
+    font-size: 16px;
+  }
+
+  .alconfirm_img {
+    background-size: contain;
+  }
+
+  .alconfirm_img img {
+    height: 150px;
+  }
+
+  .coming_soon {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hide_desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .selcard_caption {
+    padding: 25px 15px;
+    min-height: 110px;
+  }
+
+  .selcard_icon img {
+    width: 35px;
+  }
+
+  .selcard_txt {
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  .selcard_sub {
+    margin-top: -20px;
+  }
+
+  .sel_left {
+    font-size: 12px;
+  }
+
+  .sel_left::before {
+    top: 3px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .sel_right {
+    font-size: 12px;
+  }
+
+  .sel_right::before {
+    top: 3px;
+    width: 8px;
+    height: 8px;
+  }
+
+  .selcard_btn button {
+    font-size: 18px;
+    padding: 5px 25px;
+  }
+
+  .selcard_btn button i {
+    font-size: 18px;
+    margin-left: 15px;
+  }
+
+  .page_newhead {
+    font-size: 35px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
+
+  .payable_amt button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .almashaine_name input::placeholder {
+    font-size: 14px;
+  }
+
+  .select_type select {
+    font-size: 14px;
+  }
+
+  .payable_amt {
+    margin-bottom: 15px;
+  }
+
+  .upload_area {
+    padding: 40px 20px;
+  }
+
+  .file_upload_main {
+    padding: 50px 10px;
+  }
+
+  .file_uptext {
+    font-size: 22px;
+  }
+
+  .file_upbtn {
+    margin-top: 30px;
+  }
+
+  .file_upbtn label.custom_file_upload {
+    font-size: 20px;
+    padding: 5px 40px;
+    margin-bottom: 0px;
+  }
+
+  .upload_submit {
+    margin-top: 30px;
+  }
+
+  .upload_submit button {
+    font-size: 25px;
+    padding: 5px 40px;
+    width: 100%;
+  }
+
+  .alpayment_img img {
+    width: 150px;
+  }
+
+  .payment_btn button {
+    font-size: 25px;
+  }
+
+  .alconfirm_img {
+    background-size: contain;
+  }
+
+  .payment_successtxt {
+    font-size: 40px;
+  }
+
+  .coming_soon {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .selcard_caption {
+    padding: 25px 20px;
+  }
+
+  .selcard_icon img {
+    width: 50px;
+  }
+
+  .selcard_txt {
+    line-height: 50px;
+  }
+
+  .selcard_btn button i {
+    font-size: 20px;
+    margin-left: 15px;
+  }
+
+  .payable_amt button {
+    font-size: 18px;
+    padding: 10px 45px;
+  }
+
+  .page_newhead {
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+  }
+
+  .payable_amt {
+    margin-bottom: 35px;
+  }
+
+  .upload_submit button {
+    font-size: 25px;
+  }
+
+  .page_nhead {
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 25px;
+  }
+
+  .alpayment_img img {
+    width: 150px;
+  }
+
+  .payment_btn button {
+    font-size: 25px;
+  }
+
+  .alconfirm_img {
+    background-size: contain;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .ppppp {
+    display: block !important;
+  }
+  .col-sm-5 {
+    max-width: 100% !important;
+  }
+  .col-sm-7 {
+    max-width: 100% !important;
+  }
+  .col-sm-3 {
+    max-width: 50% !important;
+  }
+}

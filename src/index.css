@@ -1,0 +1,1378 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Teko:wght@300;400;500;600;700&family=Titillium+Web:wght@300;400;600;700&display=swap");
+
+:root {
+  --primary-navy: #00415a;
+  --secondary-blue: #005395;
+  --accent-orange: #f27f0c;
+  --accent-orange-hover: #d86d05;
+  --border-cyan: #2c9bd6;
+  --mandatory-red: #ff4155;
+  --bg-input: #f5f5f5;
+  --text-muted: #666666;
+  --card-shadow: 0 0 15px rgba(18, 131, 214, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: #212529;
+  background-color: #fff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.flt {
+  float: left;
+  width: 100%;
+}
+
+/* ========================================================
+   HEADER STYLES
+   ======================================================== */
+.main_header {
+  padding: 16px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ebebeb;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+}
+
+.main_header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo_img img {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+.nav_bar ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_bar ul li a {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--primary-navy);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+.nav_bar ul li a:hover {
+  color: var(--accent-orange);
+}
+
+/* Header profile dropdown */
+.login_sections {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.login_sections .profile_icon {
+  z-index: 9;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+.login_sections .profile_btn {
+  background-color: rgba(252, 239, 233, 1);
+  border: 1px solid rgba(242, 127, 12, 1);
+  border-radius: 8px;
+  padding: 6px 16px 6px 24px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(242, 127, 12, 1);
+  outline: none;
+  margin-left: -16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.login_sections .profile_btn:hover {
+  background-color: #fae4d7;
+}
+
+.myprof_list {
+  width: 175px;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  border-radius: 8px;
+  z-index: 9999;
+  background-color: #fcefe9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(242, 127, 12, 0.35);
+  overflow: hidden;
+  animation: fadeInDown 0.15s ease;
+}
+
+.myprof_list ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.myprof_list ul li {
+  list-style: none;
+  padding: 11px 14px;
+  background-color: #fcefe9;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f27f0c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  transition: background-color 0.15s;
+}
+
+.myprof_list ul li:hover {
+  background-color: #fbdac9;
+}
+
+.myprof_list ul li img {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+/* ========================================================
+   MAIN LOGIN SECTION
+   ======================================================== */
+.login_main_blr {
+  min-height: calc(100vh - 85px - 140px);
+  position: relative;
+  background-image: url("/assets/marena_bnglr.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 15px;
+}
+
+.login_main_blr::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+.login_container {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 2;
+}
+
+.login_box {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 65, 90, 0.22);
+  padding: 28px 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login_txt {
+  margin-bottom: 0;
+  color: var(--primary-navy);
+  font-family: "Teko", sans-serif;
+  font-size: 28px;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+
+.login_text_desc {
+  margin-bottom: 18px;
+  color: var(--accent-orange);
+  font-family: "Teko", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login_text_desc::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--accent-orange);
+  margin-left: 12px;
+}
+
+/* Form inputs & controls */
+.form-group-custom {
+  margin-bottom: 20px;
+}
+
+.form-control-label {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 600 !important;
+  color: var(--secondary-blue);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.mandatory {
+  color: var(--mandatory-red);
+  margin-left: 2px;
+}
+
+.form-control-custom {
+  display: block;
+  width: 100%;
+  height: 52px;
+  padding: 8px 18px;
+  font-size: 16px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  color: #444444;
+  background-color: var(--bg-input);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.form-control-custom:focus {
+  background-color: #ffffff;
+  border-color: var(--border-cyan);
+  box-shadow: 0 0 0 3px rgba(44, 155, 214, 0.15);
+}
+
+.form-control-custom::placeholder {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  color: #888888;
+}
+
+select.form-control-custom {
+  cursor: pointer;
+  appearance: auto;
+}
+
+.account_register {
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  color: var(--primary-navy);
+}
+
+.account_register a {
+  color: var(--accent-orange);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.agree_align {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 14px;
+  margin-bottom: 22px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  color: var(--primary-navy);
+}
+
+.agree_align input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--primary-navy);
+}
+
+.agree_align a {
+  color: var(--accent-orange);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Buttons */
+.submit_btn {
+  margin-top: 6px;
+}
+
+.submit_btn button {
+  width: 100%;
+  text-transform: uppercase;
+  background-color: var(--accent-orange);
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: "Teko", sans-serif;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 400 !important;
+  text-align: center;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.submit_btn button:hover {
+  background-color: var(--accent-orange-hover);
+}
+
+.submit_btn button:active {
+  transform: translateY(1px);
+}
+
+.back_btn {
+  margin-top: 14px;
+}
+
+.back_btn button {
+  width: 100%;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  border: 1px solid var(--primary-navy);
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: "Teko", sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 400 !important;
+  text-align: center;
+  color: var(--primary-navy);
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.15s ease;
+}
+
+.back_btn button:hover {
+  background-color: #f2f7f9;
+  color: #002230;
+  border-color: #002230;
+}
+
+/* ========================================================
+   DASHBOARD / SELECT SERVICE TYPE STYLES
+   ======================================================== */
+.dashboard_main {
+  min-height: calc(100vh - 85px - 140px);
+  background-color: #ffffff;
+  padding: 30px 0 60px 0;
+}
+
+.dashboard_inside {
+  width: 100%;
+}
+
+.service_type {
+  font-family: "Teko", sans-serif;
+  font-size: 44px;
+  font-weight: 400;
+  color: var(--primary-navy);
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.service_type .select {
+  font-weight: 400;
+}
+
+.marina_sport {
+  background-color: #ffffff;
+  border-radius: 16px 16px 0 0;
+  position: relative;
+  cursor: pointer;
+  max-width: 540px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.marina_sport:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 65, 90, 0.18);
+}
+
+.marina_sport_img {
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.marina_sport_img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.marina_sport:hover .marina_sport_img img {
+  transform: scale(1.02);
+}
+
+.marina_text {
+  padding: 24px 0 16px;
+  text-align: center;
+  font-family: "Teko", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #053f5c;
+  background-image: linear-gradient(-89deg, rgba(221, 221, 221, 1) 0%, rgba(243, 243, 243, 1) 38%, rgba(243, 243, 243, 1) 66%, rgba(214, 214, 214, 1) 92%);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+
+.marina_sport:hover .marina_text {
+  background-image: linear-gradient(-90deg, rgba(242, 127, 12, 1) 0%, rgba(255, 156, 56, 1) 39%, rgba(255, 160, 65, 1) 66%, rgba(242, 127, 12, 1) 100%);
+  color: #ffffff;
+}
+
+/* ========================================================
+   MY ACCOUNT PAGE STYLES (from inspect element)
+   ======================================================== */
+.acc_main {
+  margin-top: 42px;
+  margin-bottom: 32px;
+}
+
+.home_login {
+  margin-bottom: 20px;
+}
+
+.home_login.flt {
+  float: left;
+  width: auto;
+}
+
+.home_span a {
+  color: #00415a;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.home_span a:hover {
+  color: #f27f0c;
+}
+
+.login_span {
+  color: #f27f0c;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  margin-left: 2px;
+}
+
+.menu_main.menu_inside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(188, 210, 232, 1);
+  padding-bottom: 0px;
+  margin-bottom: 20px;
+}
+
+.nav_bar.acc_det.flt {
+  float: right;
+  width: auto;
+}
+
+.nav_bar.acc_det ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  float: right;
+  list-style: none;
+  gap: 0;
+}
+
+.acc_det ul li {
+  padding: 0 20px 0 0;
+  list-style: none;
+}
+
+.acc_det ul li:last-child {
+  padding-right: 0;
+}
+
+.acc_main .nav_bar ul li {
+  border-bottom: 2px solid rgba(188, 210, 232, 1);
+  padding-bottom: 7px !important;
+  margin-bottom: -2px;
+}
+
+.acc_det ul li a {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #00415a;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav_bar ul li a.underline {
+  border-bottom: 4px solid rgba(242, 127, 12, 1);
+  padding: 6px 0;
+  color: #f27f0c !important;
+  margin-bottom: -2px;
+}
+
+.cursor_display {
+  cursor: pointer;
+}
+
+/* Account Details Area */
+.details_main {
+  margin-top: 15px;
+}
+
+.add_beneficiary.flt {
+  margin-top: 10px;
+}
+
+.benif_text {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f27f0c;
+  margin-bottom: 5px;
+}
+
+.benef_content {
+  background-image: url("/assets/images/my_detail_background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 200px;
+  margin-bottom: 20px;
+  border: 1px solid #ffe1c3;
+  box-shadow: 0 0 15px rgba(18, 131, 214, 0.08);
+}
+
+.benef_content ul {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.benef_content ul li {
+  list-style: none;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #00415a;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  display: flex;
+}
+
+.benef_content ul li:last-child {
+  margin-bottom: 0 !important;
+}
+
+.benef_content ul li span {
+  color: #00415a !important;
+}
+
+.name {
+  width: 45%;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #00415a;
+}
+
+.colon {
+  width: 10%;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.values {
+  width: 45%;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #00415a;
+  word-break: break-all;
+}
+
+/* Profile Picture Area */
+.upload_text {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f27f0c;
+  margin-bottom: 5px;
+}
+
+.upload_image {
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid rgb(233, 233, 233);
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.alma_pic {
+  text-align: center;
+}
+
+.alma_pic img {
+  border-radius: 6px;
+  border: 1px solid rgb(205, 205, 205);
+  max-width: 100%;
+  display: block;
+}
+
+/* Tab 2: MARENA Styles */
+.unlock.toptext {
+  border-left: 4px solid #f27f0c;
+  padding: 8px 14px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #00415a;
+  background-color: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 22px;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+}
+
+.scroll_table_mobile {
+  overflow-x: auto;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(18, 131, 214, 0.12);
+  border-radius: 5px;
+  margin-bottom: 25px;
+}
+
+/* Custom horizontal scrollbar matching screenshot */
+.scroll_table_mobile::-webkit-scrollbar {
+  height: 10px;
+}
+
+.scroll_table_mobile::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 5px;
+}
+
+.scroll_table_mobile::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 5px;
+}
+
+.scroll_table_mobile::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+.marena_container table {
+  font-family: "Titillium Web", sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 1100px;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+.marena_container td,
+.marena_container th {
+  text-align: left;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #00415a;
+  padding: 16px 14px;
+  white-space: nowrap;
+}
+
+.marena_container th {
+  background-color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  color: #00415a;
+  padding: 18px 14px;
+  border-bottom: 1px solid rgb(242, 127, 12);
+}
+
+.marena_container tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.marena_container tr:nth-child(odd) {
+  background-color: #f7f9fa;
+}
+
+.receipt_download_btn {
+  background: none;
+  border: none;
+  color: #f27f0c !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14.5px;
+  font-weight: 600;
+  font-family: "Titillium Web", sans-serif;
+  padding: 0;
+  transition: opacity 0.15s ease;
+}
+
+.receipt_download_btn:hover {
+  opacity: 0.8;
+}
+
+.download_cls {
+  margin-left: 4px;
+  font-weight: 600;
+  color: #f27f0c;
+}
+
+/* ========================================================
+   FOOTER STYLES
+   ======================================================== */
+.login_footer {
+  background-color: var(--primary-navy);
+  border-top: 3px solid var(--border-cyan);
+  padding: 24px 0 18px 0;
+  color: #ffffff;
+  font-family: "Titillium Web", sans-serif;
+  width: 100%;
+}
+
+.footer_links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer_links li {
+  margin-bottom: 8px;
+}
+
+.footer_links li:last-child {
+  margin-bottom: 0;
+}
+
+.footer_links li a {
+  color: #ffffff !important;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 13.5px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease;
+}
+
+.footer_links li a::before {
+  content: "\f054";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 10px;
+  margin-right: 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer_links li a:hover {
+  color: var(--accent-orange) !important;
+}
+
+.footer_links li a:hover::before {
+  color: var(--accent-orange);
+}
+
+.design_by_chipsy {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.design_by_chipsy:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ========================================================
+   MODAL STYLES
+   ======================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 15px;
+}
+
+.modal-content-custom {
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 750px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeInDown 0.25s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.modal-header-custom img {
+  height: 44px;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.modal-close-btn:hover {
+  color: #000;
+}
+
+.modal-body-custom {
+  padding: 24px;
+}
+
+.contact-section-card {
+  background-color: #fbfbfb;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.contact-section-title {
+  font-family: "Teko", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--primary-navy);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-section-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-section-card ul li {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contact-section-card ul li i {
+  color: var(--secondary-blue);
+  margin-top: 4px;
+  width: 16px;
+}
+
+/* ========================================================
+   PLACEHOLDER PAGES STYLING
+   ======================================================== */
+.placeholder-page {
+  min-height: calc(100vh - 85px - 140px);
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.placeholder-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 25px rgba(0, 65, 90, 0.1);
+  padding: 40px;
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+}
+
+.placeholder-badge {
+  display: inline-block;
+  background-color: rgba(242, 127, 12, 0.12);
+  color: var(--accent-orange);
+  font-family: "Titillium Web", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.placeholder-title {
+  font-family: "Teko", sans-serif;
+  font-size: 34px;
+  color: var(--primary-navy);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.placeholder-desc {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.placeholder-btn {
+  display: inline-block;
+  background-color: var(--accent-orange);
+  color: #ffffff;
+  font-family: "Teko", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 8px 28px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: background-color 0.15s ease;
+}
+
+.placeholder-btn:hover {
+  background-color: var(--accent-orange-hover);
+  color: #ffffff;
+}
+
+/* ========================================================
+   MOBILE NAVIGATION DRAWER & UTILITIES
+   ======================================================== */
+.header_flex_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hide_desktop {
+  display: none !important;
+}
+
+.mobile_hamburger_btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--primary-navy);
+  padding: 8px 10px;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  transition: color 0.15s ease;
+}
+
+.mobile_hamburger_btn:hover {
+  color: var(--accent-orange);
+}
+
+.mobile_menu_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 99999;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.menuH_mobile {
+  width: 290px;
+  max-width: 85vw;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -4px 0 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobileMenu_close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+.mobile_menu_title {
+  font-family: "Teko", sans-serif;
+  font-size: 23px;
+  font-weight: 500;
+  color: var(--primary-navy);
+  letter-spacing: 0.5px;
+}
+
+.close_drawer_btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--primary-navy);
+  cursor: pointer;
+  padding: 4px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.close_drawer_btn:hover {
+  color: var(--accent-orange);
+}
+
+.mobile_nav_list {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.mobile_nav_list li {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.mobile_nav_list li a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-navy);
+  text-decoration: none;
+  min-height: 48px;
+  touch-action: manipulation;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.mobile_nav_list li a:hover,
+.mobile_nav_list li a:active {
+  background-color: #fcefe9;
+  color: var(--accent-orange);
+}
+
+.mobile_nav_list li a i {
+  width: 22px;
+  text-align: center;
+  font-size: 17px;
+  color: var(--accent-orange);
+}
+
+/* Cross-Browser & Mobile Touch Optimization */
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Prevent auto zoom on iOS Safari */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+.form-control-custom {
+  font-size: 16px !important;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+/* ========================================================
+   RESPONSIVE QUERIES
+   ======================================================== */
+@media (max-width: 991.98px) {
+  .details_main .row > div {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hide_desktop {
+    display: flex !important;
+  }
+
+  .hide_mobile {
+    display: none !important;
+  }
+
+  .mobile_hamburger_btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo_img img {
+    height: 40px;
+  }
+
+  /* My Account Header */
+  .menu_main.menu_inside {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 8px;
+  }
+
+  .nav_bar.acc_det.flt {
+    width: 100%;
+    float: none;
+  }
+
+  .nav_bar.acc_det ul {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .acc_det ul li {
+    padding-right: 16px;
+  }
+
+  .acc_det ul li a {
+    font-size: 15px;
+  }
+
+  /* Your details card list */
+  .benef_content ul li {
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .name {
+    width: 38% !important;
+    font-size: 14px;
+  }
+
+  .colon {
+    width: 5% !important;
+    font-size: 14px;
+  }
+
+  .values {
+    width: 57% !important;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .service_type {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+
+  .marina_text {
+    font-size: 24px;
+    padding: 18px 0 12px;
+  }
+
+  .receipt_hidden_uploader_section {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .login_box {
+    padding: 22px 18px;
+  }
+
+  .login_txt {
+    font-size: 24px;
+  }
+
+  .login_text_desc {
+    font-size: 20px;
+  }
+
+  .modal-content-custom {
+    width: 95%;
+    margin: 10px auto;
+    max-height: 85vh;
+    max-height: 85dvh;
+  }
+
+  .modal-header-custom {
+    padding: 12px 16px;
+  }
+
+  .modal-body-custom {
+    padding: 16px 14px;
+  }
+
+  .contact-section-card {
+    padding: 12px 14px;
+  }
+
+  .submit_btn button,
+  .back_btn button {
+    font-size: 22px;
+    padding: 10px;
+    min-height: 48px;
+  }
+
+  .footer_links li a {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .name {
+    width: 100% !important;
+    font-weight: 600;
+  }
+  .colon {
+    display: none !important;
+  }
+  .values {
+    width: 100% !important;
+    padding-left: 8px;
+    margin-bottom: 6px;
+  }
+}
